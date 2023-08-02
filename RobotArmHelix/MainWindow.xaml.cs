@@ -120,6 +120,14 @@ namespace RobotArmHelix
 
         public MainWindow()
         {
+            /** Debug sphere to check in which point the joint is rotating**/
+            var builder = new MeshBuilder(true, true);
+            var position = new Point3D(0, 0, 0);
+            builder.AddSphere(position, 50, 15, 15);
+            geom = new GeometryModel3D(builder.ToMesh(), Materials.Brown);
+            visual = new ModelVisual3D();
+            visual.Content = geom;
+
             InitializeComponent();
             basePath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\3D_Models\\";
             List<string> modelsNames = new List<string>();
@@ -146,14 +154,6 @@ namespace RobotArmHelix
             modelsNames.Add(MODEL_PATH20);
 #endif
             RoboticArm.Content = Initialize_Environment(modelsNames);
-
-            /** Debug sphere to check in which point the joint is rotating**/
-            var builder = new MeshBuilder(true, true);
-            var position = new Point3D(0, 0, 0);
-            builder.AddSphere(position, 50, 15, 15);
-            geom = new GeometryModel3D(builder.ToMesh(), Materials.Brown);
-            visual = new ModelVisual3D();
-            visual.Content = geom;
 
             viewPort3d.RotateGesture = new MouseGesture(MouseAction.RightClick);
             viewPort3d.PanGesture = new MouseGesture(MouseAction.LeftClick);
@@ -391,7 +391,9 @@ namespace RobotArmHelix
         {
             try
             {
-                reachingPoint = new Vector3D(Double.Parse(TbX.Text), Double.Parse(TbY.Text), Double.Parse(TbZ.Text));
+                reachingPoint = new Vector3D(Double.Parse(TbX.Text),
+                    TbY != null ? Double.Parse(TbY.Text) : 0.0,
+                    TbZ != null ? Double.Parse(TbZ.Text) : 0.0);
                 geom.Transform = new TranslateTransform3D(reachingPoint);
             }
             catch (Exception exc)

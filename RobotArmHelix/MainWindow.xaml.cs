@@ -1,6 +1,6 @@
 ﻿//#define IRB4600
-//#define IRB6700
-#define UR5E
+#define IRB6700
+//#define UR5E
 
 using System;
 using System.Collections.Generic;
@@ -432,12 +432,14 @@ namespace RobotArmHelix
                 RA.Children.Add(joints[4].model);
                 RA.Children.Add(joints[5].model);
                 RA.Children.Add(joints[6].model);
-                
+
+                double PI = Math.PI;
+
                 joints[0].angleMin = -180;
                 joints[0].angleMax = 180;
                 joints[0].rotAxisX = 0;
                 joints[0].rotAxisY = 0;
-                joints[0].rotAxisZ = 1;
+                //joints[0].rotAxisZ = 0.1625;
                 joints[0].rotPointX = 0;
                 joints[0].rotPointY = 0;
                 joints[0].rotPointZ = 0;
@@ -447,30 +449,27 @@ namespace RobotArmHelix
                 joints[1].rotAxisX = 0;
                 joints[1].rotAxisY = 1;
                 joints[1].rotAxisZ = 0;
-                //joints[1].rotPointX = 100;
-                //joints[1].rotPointY = -100;
-                //joints[1].rotPointZ = 300;
-                joints[1].rotPointX = 175;
-                joints[1].rotPointY = -200;
-                joints[1].rotPointZ = 500;
+                //joints[1].rotPointX = -0.425;
+                joints[1].rotPointY = 0;
+                joints[1].rotPointZ = 0;
 
                 joints[2].angleMin = -90;
                 joints[2].angleMax = 90;
                 joints[2].rotAxisX = 0;
                 joints[2].rotAxisY = 1;
                 joints[2].rotAxisZ = 0;
-                joints[2].rotPointX = 190;
-                joints[2].rotPointY = -700;
-                joints[2].rotPointZ = 1595;
+                joints[2].rotPointX = 100;
+                joints[2].rotPointY = -300;
+                joints[2].rotPointZ = 1000;
 
                 joints[3].angleMin = -180;
                 joints[3].angleMax = 180;
                 joints[3].rotAxisX = 1;
                 joints[3].rotAxisY = 0;
                 joints[3].rotAxisZ = 0;
-                joints[3].rotPointX = 400;
+                joints[3].rotPointX = 200;
                 joints[3].rotPointY = 0;
-                joints[3].rotPointZ = 1765;
+                joints[3].rotPointZ = 1000;
 
                 joints[4].angleMin = -115;
                 joints[4].angleMax = 115;
@@ -489,6 +488,15 @@ namespace RobotArmHelix
                 joints[5].rotPointX = 1405;
                 joints[5].rotPointY = 0;
                 joints[5].rotPointZ = 1765;
+
+                joints[6].angleMin = -180;
+                joints[6].angleMax = 180;
+                joints[6].rotAxisX = 1;
+                joints[6].rotAxisY = 0;
+                joints[6].rotAxisZ = 0;
+                joints[6].rotPointX = 1405;
+                joints[6].rotPointY = 0;
+                joints[6].rotPointZ = 1765;
 #endif
             }
             catch (Exception e)
